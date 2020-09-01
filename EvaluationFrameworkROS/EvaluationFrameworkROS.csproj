@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="RosBridgeClientTest\**" />
+    <Compile Remove="RosBridgeClient\**" />
+    <EmbeddedResource Remove="RosBridgeClientTest\**" />
+    <EmbeddedResource Remove="RosBridgeClient\**" />
+    <None Remove="RosBridgeClientTest\**" />
+    <None Remove="RosBridgeClient\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RosBridgeClient">
+      <HintPath>External\RosBridgeClient.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
