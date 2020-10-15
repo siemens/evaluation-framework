@@ -2,9 +2,32 @@
 
 The [Evaluation Framework](https://github.com/siemens/evaluation-framework) is a set of open source software libraries and tools in [C\# ](https://docs.microsoft.com/de-de/dotnet/csharp/csharp), implemented in .[NET](https://www.microsoft.com/net), and [Python](https://www.python.org/) for efficiently evaluating simulation models of mechatronic systems, in particular by using the game engine [Unity](https://unity3d.com/) as simulation environment, and visualizing the evaluation results in an interactive GUI.
 
-The Evaluation Framework is the result of [Michael Dyck's](https://github.com/MD-cyb3) Master's thesis entitled 'Development of a Simulation-Based Evaluation Framework for Mechatronic Systems', which he did in the course of his Master's studies 'Robotics, Cognition, Intelligence' at [Technical University of Munich (TUM)](https://www.tum.de/en/), (Germany). The thesis was written together with [Dr. Martin Bischoff](https://github.com/MartinBischoff) from Siemens AG, as well as [Jonis Kiesbye]() from the [Chair of Astronautics (LRT)](https://www.lrg.tum.de/en/lrt/home/) and [Jonas Wittmann](https://github.com/jonasTUM) from the [Chair of Applied Mechaincs (AM)](https://www.mw.tum.de/en/am/home/) of [TUM](https://www.tum.de/en/).
+## Idea - Virtual Prototyping ##
 
-[Here](https://github.com/siemens/evaluation-framework/wiki/Demonstration-Project) is an application example illustrating what can be done with the Evaluation Framework.
+The idea of the Evaluation Framework is based on the concept of **Virtual Prototyping**, see e.g. [Wikipedia](https://en.wikipedia.org/wiki/Virtual_prototyping#:~:text=Virtual%20prototyping%20is%20a%20method,to%20making%20a%20physical%20prototype.) or [this publication](https://www.researchgate.net/publication/220517566_Definition_and_Review_of_Virtual_Prototyping). More specifically, the Evaluation Framework serves as a tool for design space exploration in Virtual Prototyping. 
+
+In Virtual Prototyping, (usually 3D) simulation models of e.g. mechatronic systems are examined and evaluated with the goal of optimizing the production costs, time-to-market, and the product itself. Without the need for physical prototypes, different product designs from different engineering specialities (mechanics, electronics, control, software development) can be tested and evaluated early in the production process. In order to do so, the following parameters have to be specified:
+
+* Design alternatives of the product ot be tested, e.g. design of mechanical and electrical components, controller structures, etc.. In the Evaluation Framework these parameters are referred to as **EvaluationParamters**
+* Decision criteria the product is evaluated against, e.g. product weight for specific mechanical designs, electric energy consumption with different electrical components, stability of various controllers, etc.. In the Evaluation Framework these parameters are referred to as **ObjectiveValues**
+
+Both the **EvaluationParameters** and **ObjectiveValues** together define the complete **Evaluation Space**. The following GIF shows an example of possible **EvaluationParameters** and **ObjectiveValues** in the case of a simulation model of a plane.
+
+gif
+
+Hence, in Virtual Prototyping, countless design alternatives, i.e. **EvaluationParameters**, of simulation models of mechatronic systems (or other products) are simulated and the specified decision criteria, i.e. **ObjectiveValues**, are used to evalute - and finally optimize - the performance of the respective product designs.
+
+## Implementation - 3 Evaluation Framework Components ##
+
+The Evaluation Framework realizes this idea of performing Virtual Prototyping through three distinct software components. All of these components can also be used individually:
+
+img
+
+* **Definition of Evaluation Space**: In Unity it is very easy to build physics simulations, and hence Unity serves as a great tool for simulation of mechatronic systems. The first component of the Evaluation Framework, i.e. [EvaluationFrameworkUnity](https://github.com/siemens/evaluation-framework/tree/master/Unity3D/EvaluationFrameworkUnity) [EvaluationFrameworkROSUnity](https://github.com/siemens/evaluation-framework/tree/master/Unity3D/EvaluationFrameworkROSUnity), is a Unity addon that allows users to intuitively and easily define **EvaluationParamters** and **ObjectiveValues** from any Unity simulation model. In the end, the specified **EvaluationSpace** is automatically saved into two .json-files and the Unity simulation is built into a standalone application (executable).
+* **Execution and Evaluation**: The second component of the Evaluation Framework is implemented as a .[NET](https://www.microsoft.com/net) solution in C\#, see [EvaluationFramework](https://github.com/siemens/evaluation-framework/tree/master/EvaluationFramework) and [EvaluationFrameworkROS](https://github.com/siemens/evaluation-framework/tree/master/EvaluationFrameworkROS). This component efficiently simulates the Unity project for all combinations of the previously defined **EvaluationParamters**. In other words, the .NET solution repeatedly calls the executable of the Unity simulation and performs a brute-force evaluation of the complete parameter space and retrieves the **ObjectiveValues** from the executable. In order to speed up this process, the underlying hardware is used to its maximum capacity, as one simulation can run per CPU core, thus parallelizing the brute-force evaluation. Finally, the results are stored in a table-formatted .txt-file containing all **EvaluationParameter** values and the corresponding **ObjectiveValue** results.
+* **Point Cloud Visualization**: The third component of the Evaluation Framework visualizes the evaluation results obtained from the second step in an interactive Design Space Exploration GUI. The corresponding source code can be found in the [VisualizationGUI](https://github.com/siemens/evaluation-framework/tree/master/VisualizationGUI) folder. The GUI has multiple interactive elements that allow the user to inspect the **Evaluation Space** from different perspectives, compare **ObjectiveValues** for different combinations of **EvaluationParameters** and identify conflicting design alternatives and product solutions.
+
+---
 
 ## Contents ##
 
@@ -12,6 +35,8 @@ The Evaluation Framework is the result of [Michael Dyck's](https://github.com/MD
 * [EvaluationFrameworkROS](https://github.com/siemens/evaluation-framework/tree/master/EvaluationFrameworkROS): .NET solution of the Evaluation Framework with the extension of communicating with a [ROS](https://www.ros.org/) system via [ROS\#](https://github.com/siemens/ros-sharp)
 * [Unity3D](https://github.com/siemens/evaluation-framework/tree/master/Unity3D): Source code of the Evaluation Framework connected to the game engine [Unity](https://unity3d.com/)
 * [VisualizationGUI](https://github.com/siemens/evaluation-framework/tree/master/VisualizationGUI): [Python](https://www.python.org/) code of the GUI visualizing the evaluation results
+
+[Here](https://github.com/siemens/evaluation-framework/wiki/Demonstration-Project) is an application example illustrating what can be done with the Evaluation Framework.
 
 ## Releases ##
 
