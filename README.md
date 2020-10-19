@@ -48,10 +48,11 @@ Have a look at the developer documentation for this tool [here](https://github.c
 ## Releases ##
 
 Each release contains:
-* `EvaluationFrameworkUnity.unitypackage`: Unity Package containing [EvaluationFrameworkUnity](https://github.com/siemens/evaluation-framework/tree/master/Unity3D/EvaluationFrameworkUnity) (**Tool 1**).
-* `EvaluationFramework.zip`:
-zipped binaries of [EvaluationFramework](https://github.com/siemens/evaluation-framework/tree/master/EvaluationFramework) (**Tool 2**)
-* `VisualizationGUI.zip`: zip file containing the [VisualizationGUI](https://github.com/siemens/evaluation-framework/tree/master/VisualizationGUI) python application (**Tool 3**)
+* `EvaluationFrameworkUnity.zip`: Zip file containing the Unity package [EvaluationFrameworkUnity](https://github.com/siemens/evaluation-framework/tree/master/Unity3D/EvaluationFrameworkUnity) (**Tool 1**).
+* `EvaluationFrameworkROSUnity.zip`: Zip file containing the Unity package [EvaluationFrameworkROSUnity](https://github.com/siemens/evaluation-framework/tree/master/Unity3D/EvaluationFrameworkROSUnity) (**Tool 1**).
+* `EvaluationFramework.zip`: Zipped binaries, i.e. the build of [EvaluationFramework](https://github.com/siemens/evaluation-framework/tree/master/EvaluationFramework) (**Tool 2**)
+* `EvaluationFrameworkROS.zip`: Zipped binaries, i.e. the build of [EvaluationFrameworkROS](https://github.com/siemens/evaluation-framework/tree/master/EvaluationFrameworkROS) (**Tool 2**)
+* `VisualizationGUI.zip`: Zip file containing the [VisualizationGUI](https://github.com/siemens/evaluation-framework/tree/master/VisualizationGUI) python application (**Tool 3**)
 
 Please get the latest development version directly from the [tip of this master branch](https://github.com/siemens/evaluation-framework).
 
