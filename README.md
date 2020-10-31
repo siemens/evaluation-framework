@@ -14,7 +14,7 @@ This project consists of 3 tools to evaluate many variants of (Unity) simulation
 2. Define the parameters you want to vary and the target values you want to evaluate.
 3. Generate the resulting `.json` files and compile your Unity project as a standalone `.exe`.
 
-<img src="./assets/param_selection.PNG" width="400"/> <img src="./assets/param_listing.PNG" width="400"/>
+<img src="./assets/param_selection.PNG" width="400"/> <img src="./assets/param_listing.PNG" width="492"/>
 
 Go [here](https://github.com/siemens/evaluation-framework/wiki/Evaluation-Space) for additional information on this specific tool.  
 Have a look at the developer documentation for this tool [here](https://github.com/siemens/evaluation-framework/wiki/Unity-Editor-Functionality).
